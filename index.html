@@ -1,0 +1,760 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shima | AI & Data Science Portfolio</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --dark: #10152f;
+    --purple: #7657ff;
+    --pink: #ff5fa2;
+    --light: #f7f7ff;
+    --text: #272744;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--light);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 17px 8%;
+    background: rgba(255,255,255,.96);
+    box-shadow: 0 3px 20px rgba(20,20,60,.08);
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    color: var(--purple);
+}
+
+nav ul {
+    display: flex;
+    gap: 22px;
+    list-style: none;
+}
+
+nav ul a {
+    font-size: 14px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+nav ul a:hover {
+    color: var(--pink);
+}
+
+.hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 80px 10%;
+    color: white;
+    background:
+      radial-gradient(circle at 85% 20%, #ff5fa255, transparent 30%),
+      radial-gradient(circle at 10% 90%, #7657ff66, transparent 35%),
+      linear-gradient(135deg, #10152f, #30245c 60%, #55347c);
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.hello {
+    display: inline-block;
+    padding: 8px 17px;
+    border: 1px solid #ffffff55;
+    border-radius: 30px;
+    background: #ffffff12;
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 7vw, 76px);
+    line-height: 1.1;
+    margin-bottom: 18px;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, #c7baff, #ff9fc8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero h2 {
+    font-size: clamp(20px, 3vw, 29px);
+    margin-bottom: 18px;
+}
+
+.hero p {
+    max-width: 580px;
+    color: #e2e0f5;
+    font-size: 17px;
+}
+
+.buttons {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 23px;
+    border-radius: 30px;
+    font-weight: 700;
+    transition: .3s;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, var(--purple), var(--pink));
+    color: white;
+}
+
+.btn-outline {
+    border: 1px solid #ffffff88;
+    color: white;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px #0002;
+}
+
+.profile-card {
+    flex-shrink: 0;
+    width: 270px;
+    height: 300px;
+    border-radius: 35px;
+    border: 2px solid #ffffff55;
+    background: linear-gradient(135deg, #ffffff20, #ffffff08);
+    box-shadow: 0 20px 60px #0003;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transform: rotate(2deg);
+}
+
+.profile-icon {
+    width: 125px;
+    height: 125px;
+    display: grid;
+    place-items: center;
+    font-size: 65px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a895ff, #ff9fc8);
+    margin-bottom: 20px;
+}
+
+.profile-card h3 {
+    font-size: 25px;
+}
+
+.profile-card p {
+    font-size: 14px;
+    padding: 0 15px;
+}
+
+section {
+    padding: 80px 10%;
+}
+
+.section-title {
+    font-size: clamp(30px, 4vw, 42px);
+    text-align: center;
+    margin-bottom: 12px;
+    color: var(--dark);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #77758f;
+    margin-bottom: 42px;
+}
+
+.about-box {
+    max-width: 900px;
+    margin: auto;
+    padding: 35px;
+    background: white;
+    border-radius: 22px;
+    box-shadow: 0 10px 40px #25204d0d;
+    border: 1px solid #eceafd;
+}
+
+.about-box p {
+    margin-bottom: 15px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.tag {
+    padding: 7px 14px;
+    border-radius: 25px;
+    background: #eeeaff;
+    color: #6347d8;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.education-grid,
+.skills-grid,
+.projects-grid,
+.cert-grid,
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.card {
+    padding: 25px;
+    border-radius: 20px;
+    background: white;
+    border: 1px solid #eceafd;
+    box-shadow: 0 8px 30px #25204d0a;
+    transition: transform .3s, box-shadow .3s;
+    overflow-wrap: anywhere;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px #25204d16;
+}
+
+.card-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.card h3 {
+    font-size: 19px;
+    color: var(--dark);
+    margin-bottom: 9px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #69677f;
+    margin-bottom: 7px;
+}
+
+.card small {
+    color: var(--purple);
+    font-weight: 700;
+}
+
+#skills {
+    background: white;
+}
+
+.skill {
+    text-align: center;
+}
+
+.skill .card-icon {
+    font-size: 36px;
+}
+
+.cert-card {
+    border-top: 4px solid var(--purple);
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.project-card .btn {
+    margin-top: auto;
+    padding: 9px 17px;
+    font-size: 13px;
+    background: #eeeaff;
+    color: #6347d8;
+}
+
+#contact {
+    background: linear-gradient(135deg, #171633, #392763);
+    color: white;
+}
+
+#contact .section-title {
+    color: white;
+}
+
+#contact .section-subtitle {
+    color: #d9d5ee;
+}
+
+.contact-box {
+    max-width: 750px;
+    margin: auto;
+    display: grid;
+    gap: 15px;
+}
+
+.contact-item {
+    padding: 18px 22px;
+    border-radius: 15px;
+    background: #ffffff12;
+    border: 1px solid #ffffff22;
+    overflow-wrap: anywhere;
+}
+
+.contact-item strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.contact-item a {
+    color: #d9caff;
+}
+
+footer {
+    text-align: center;
+    padding: 24px;
+    background: #0c1025;
+    color: #c8c5df;
+    font-size: 13px;
+}
+
+@media (max-width: 950px) {
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 60px 7%;
+    }
+
+    .hero p {
+        margin: auto;
+    }
+
+    .buttons {
+        justify-content: center;
+    }
+
+    .profile-card {
+        width: 220px;
+        height: 230px;
+    }
+
+    .profile-icon {
+        width: 90px;
+        height: 90px;
+        font-size: 48px;
+    }
+
+    .education-grid,
+    .skills-grid,
+    .projects-grid,
+    .cert-grid,
+    .info-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    nav {
+        padding: 15px 5%;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 600px) {
+    nav {
+        justify-content: center;
+    }
+
+    nav ul {
+        justify-content: center;
+        gap: 10px 15px;
+    }
+
+    nav ul a {
+        font-size: 12px;
+    }
+
+    section {
+        padding: 60px 6%;
+    }
+
+    .education-grid,
+    .skills-grid,
+    .projects-grid,
+    .cert-grid,
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-box {
+        padding: 23px;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 55px 6%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="#home" class="logo">Shima<span> ✦</span></a>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HOME -->
+<header class="hero" id="home">
+    <div class="hero-content">
+        <span class="hello">👋 Hello! Welcome to my portfolio</span>
+        <h1>Hi, I'm <span class="gradient-text">Shima</span></h1>
+        <h2>B.E. Artificial Intelligence &amp; Data Science Student</h2>
+        <p>
+            I am an enthusiastic engineering student who enjoys learning
+            programming, exploring artificial intelligence, and developing
+            creative solutions through technology. Welcome to my digital space!
+        </p>
+        <div class="buttons">
+            <a class="btn btn-primary" href="#projects">Explore My Projects ↗</a>
+            <a class="btn btn-outline" href="#contact">Contact Me</a>
+        </div>
+    </div>
+
+    <div class="profile-card">
+        <div class="profile-icon">👩🏻‍💻</div>
+        <h3>Shima</h3>
+        <p>Curious Mind · Creative Learner · Future Innovator</p>
+    </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+    <h2 class="section-title">About Me</h2>
+    <p class="section-subtitle">A little introduction about me</p>
+
+    <div class="about-box">
+        <p>
+            Hello! I'm Shima, a B.E. student specializing in Artificial
+            Intelligence and Data Science at GSSS Institute of Engineering
+            and Technology for Women, Mysore, Karnataka.
+        </p>
+        <p>
+            I am interested in programming, data analysis, and emerging
+            technologies. I enjoy learning new concepts, practising coding,
+            and building projects that help me improve my technical skills.
+        </p>
+        <p>
+            My goal is to keep learning, grow my knowledge, and use technology
+            to solve real-world problems.
+        </p>
+
+        <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">C Programming</span>
+            <span class="tag">Java</span>
+            <span class="tag">Data Structures</span>
+            <span class="tag">Artificial Intelligence</span>
+            <span class="tag">Data Science</span>
+        </div>
+    </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+    <h2 class="section-title">My Education</h2>
+    <p class="section-subtitle">My academic journey</p>
+
+    <div class="education-grid">
+        <article class="card">
+            <div class="card-icon">🎓</div>
+            <h3>B.E. Artificial Intelligence &amp; Data Science</h3>
+            <p><strong>GSSS Institute of Engineering and Technology for Women</strong></p>
+            <p>Mysore, Karnataka</p>
+            <small>Currently Pursuing</small>
+        </article>
+
+        <article class="card">
+            <div class="card-icon">📚</div>
+            <h3>PUC — Pre-University Course</h3>
+            <p><strong>Shree Guru Vidya Peetha Residential PU College</strong></p>
+            <p>Itag Cross, Kanadala, Kalaburagi District, Karnataka</p>
+        </article>
+
+        <article class="card">
+            <div class="card-icon">🏫</div>
+            <h3>SSLC — 10th Standard</h3>
+            <p><strong>Morarji Desai Residential School</strong></p>
+            <p>Hebbal, Chittapur, Kalaburagi District, Karnataka</p>
+        </article>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+    <h2 class="section-title">Technical Skills</h2>
+    <p class="section-subtitle">Technologies I am learning and practising</p>
+
+    <div class="skills-grid">
+        <article class="card skill">
+            <div class="card-icon">🐍</div>
+            <h3>Python</h3>
+            <p>Programming fundamentals and problem-solving.</p>
+        </article>
+
+        <article class="card skill">
+            <div class="card-icon">💻</div>
+            <h3>C Programming</h3>
+            <p>Basic programming, logic, and functions.</p>
+        </article>
+
+        <article class="card skill">
+            <div class="card-icon">☕</div>
+            <h3>Java</h3>
+            <p>Learning object-oriented programming.</p>
+        </article>
+
+        <article class="card skill">
+            <div class="card-icon">🧩</div>
+            <h3>Data Structures</h3>
+            <p>Learning data organisation and algorithms.</p>
+        </article>
+
+        <article class="card skill">
+            <div class="card-icon">📊</div>
+            <h3>Data Science</h3>
+            <p>Exploring data, patterns, and insights.</p>
+        </article>
+
+        <article class="card skill">
+            <div class="card-icon">🤖</div>
+            <h3>Artificial Intelligence</h3>
+            <p>Exploring AI concepts and applications.</p>
+        </article>
+
+        <article class="card skill">
+            <div class="card-icon">🌐</div>
+            <h3>HTML &amp; CSS</h3>
+            <p>Creating and styling web pages.</p>
+        </article>
+
+        <article class="card skill">
+            <div class="card-icon">📈</div>
+            <h3>Excel &amp; Power BI</h3>
+            <p>Interested in data visualisation and reporting.</p>
+        </article>
+
+        <article class="card skill">
+            <div class="card-icon">🧮</div>
+            <h3>Pandas &amp; NumPy</h3>
+            <p>Exploring Python tools for data analysis.</p>
+        </article>
+    </div>
+</section>
+
+<!-- CERTIFICATES -->
+<section id="certificates">
+    <h2 class="section-title">My Certificates</h2>
+    <p class="section-subtitle">Courses and learning achievements</p>
+
+    <div class="cert-grid">
+        <article class="card cert-card">
+            <div class="card-icon">🏅</div>
+            <h3>Python Programming</h3>
+            <p>Certificate in Python programming.</p>
+            <small>Certificate earned</small>
+        </article>
+
+        <article class="card cert-card">
+            <div class="card-icon">🏅</div>
+            <h3>C Programming</h3>
+            <p>Certificate in C programming.</p>
+            <small>Certificate earned</small>
+        </article>
+
+        <article class="card cert-card">
+            <div class="card-icon">🏅</div>
+            <h3>Data Structures</h3>
+            <p>Certificate in Data Structures.</p>
+            <small>Certificate earned</small>
+        </article>
+    </div>
+</section>
+
+<!-- INTERNSHIP -->
+<section id="internship">
+    <h2 class="section-title">Internship</h2>
+    <p class="section-subtitle">Professional learning and experience</p>
+
+    <div class="about-box">
+        <p>
+            I am looking forward to internship opportunities where I can
+            apply my programming knowledge, learn from professionals, and
+            gain practical experience in technology.
+        </p>
+        <p><strong>Status:</strong> Update this section when you complete an internship.</p>
+    </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+    <h2 class="section-title">Achievements</h2>
+    <p class="section-subtitle">Learning milestones and accomplishments</p>
+
+    <div class="info-grid">
+        <article class="card">
+            <div class="card-icon">🌱</div>
+            <h3>Continuous Learning</h3>
+            <p>Building programming knowledge and exploring new technologies.</p>
+        </article>
+
+        <article class="card">
+            <div class="card-icon">💡</div>
+            <h3>Project Development</h3>
+            <p>Practising how to turn ideas into useful projects.</p>
+        </article>
+
+        <article class="card">
+            <div class="card-icon">🚀</div>
+            <h3>Skill Development</h3>
+            <p>Working to strengthen problem-solving and technical skills.</p>
+        </article>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <h2 class="section-title">My Projects</h2>
+    <p class="section-subtitle">Projects and ideas from my learning journey</p>
+
+    <div class="projects-grid">
+        <article class="card project-card">
+            <div class="card-icon">🌦️</div>
+            <h3>Weather Prediction Website</h3>
+            <p>
+                A web project idea for displaying weather information
+                using a city search and weather data.
+            </p>
+            <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+            </div>
+            <a class="btn" href="#contact">Project Details</a>
+        </article>
+
+        <article class="card project-card">
+            <div class="card-icon">🌿</div>
+            <h3>Plant Disease Identifier</h3>
+            <p>
+                An AI project idea to help identify possible plant diseases
+                from images.
+            </p>
+            <div class="tags">
+                <span class="tag">AI</span>
+                <span class="tag">Python</span>
+            </div>
+            <a class="btn" href="#contact">Project Details</a>
+        </article>
+
+        <article class="card project-card">
+            <div class="card-icon">📊</div>
+            <h3>Student Performance Dashboard</h3>
+            <p>
+                A project idea to organise student marks and display
+                performance insights.
+            </p>
+            <div class="tags">
+                <span class="tag">Data Analysis</span>
+                <span class="tag">Charts</span>
+            </div>
+            <a class="btn" href="#contact">Project Details</a>
+        </article>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <h2 class="section-title">Let's Connect</h2>
+    <p class="section-subtitle">
+        Feel free to contact me for learning and project discussions.
+    </p>
+
+    <div class="contact-box">
+        <div class="contact-item">
+            <strong>📧 Email</strong>
+            <a href="mailto:shimaguranna@gmail.com">shimaguranna@gmail.com</a>
+        </div>
+
+        <div class="contact-item">
+            <strong>📱 Phone</strong>
+            <a href="tel:8147914492">8147914492</a>
+        </div>
+
+        <div class="contact-item">
+            <strong>💼 LinkedIn / GitHub</strong>
+            <p>Add your real profile links here when they are ready.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>Designed with 💜 by Shima</p>
+    <p>© <span id="year">2026</span> Shima | Personal Portfolio</p>
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
